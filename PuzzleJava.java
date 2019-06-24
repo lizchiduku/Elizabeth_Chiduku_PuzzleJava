@@ -1,102 +1,110 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-@SuppressWarnings("unchecked")
+import java.util.*;
 
 public class PuzzleJava{
-	/*Create an array with values: 3,5,1,2,7,9,8,13,25,32. Print the sum, functionshould return an array that only includes numbers that are greater than 10.
-	*/
-	
-	public static ArrayList<Integer> printAndReturn(){
-        int[] arr = {3,5,1,2,7,9,8,13,25,32};
-        int sum = 0;
-        ArrayList<Integer> newarr = new ArrayList();
-        for(int num : arr){
-            sum += num;
-            if(num>10){
-                newarr.add(num);
-            }
-        }
-        System.out.println("Sum: "+sum);
-        return newarr;
+  public ArrayList<Integer> printSumAndGreaterThanTen(){
+    int[] arr = {3,5,1,2,7,9,8,13,25,32};
+    ArrayList<Integer> newArr1 = new ArrayList<Integer>();
+    int sum = 0;
+    for(int i = 0; i < arr.length; i++){
+      sum = sum + i;
+      if(arr[i] > 10){
+        newArr1.add(arr[i]);
+      }
     }
-    /*Create an array: Nancy, Jinichi, Fujibayashi, Momochi, Ishikawa. Shuffle the array and print the name of each person. Have the method also return an array with names that are longer than 5 characters.
-	*/
-	public static ArrayList<String> shuffleNames(){
-        String[] names = {"Nancy", "Jinichi", "Fujibayashi", "Momochi", "Ishikawa"};
-        ArrayList<String> newarr = new ArrayList();
-        List list = Arrays.asList(names);
-        Collections.shuffle(list);
-        for(String name : names){
-            System.out.println(name);
-            if(name.length() > 5){
-                newarr.add(name);
-            }
-        }
-        return newarr;
+    System.out.println(sum);
+    return newArr1;
+  }
+
+  public ArrayList<String> printNames(){
+    String[] arr = {"Nancy", "Jinichi", "Fujibayashi", "Momochi", "Ishikawa"};
+    ArrayList<String> newArr2 = new ArrayList<String>();
+    Collections.shuffle(Arrays.asList(arr));
+
+    for(int i = 0; i < arr.length; i++){
+      if(arr[i].length() > 5){
+        newArr2.add(arr[i]);
+      }
     }
-    /* Create an array that contains all 26 letters of the alphabet (this array must have 26 values). Shuffle the array and display the last letter of the array. Have it also display the first letter of the array. If the first letter in the array is a vowel, have it display a message
-	*/
-	public static void alphaShuffle(){
-        String[] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
-        Collections.shuffle(Arrays.asList(alphabet));
-        String first = alphabet[0];
-        System.out.println("The last letter is: "+alphabet[25]);
-        System.out.println("The first letter is: "+first);
-        if(first == "a" || first == "e" || first == "i" || first == "o" || first == "u"){
-            System.out.println("The first letter is a vowel. Yay!");
-        }
+    System.out.println(Arrays.toString(arr));
+    return newArr2;
+  }
+
+  public ArrayList<Character> printAlphabet(){
+    char[] letters = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    ArrayList<Character> alphabet = new ArrayList<Character>();
+    for(int i = 0; i < letters.length; i++){
+      alphabet.add(letters[i]);
     }
-    /* Generate and return an array with 10 random numbers between 55-100.
-	*/
-	public static int[] randomArr55To100(){
-        int[] arr = new int[10];
-        Random rand = new Random();
-        for(int i=0; i<10; i++){
-            arr[i] = rand.nextInt(46)+55;
-        }
-        return arr;
+    ArrayList<Character> newArr3 = new ArrayList<Character>();
+    Collections.shuffle(alphabet);
+
+    char firstLetter = alphabet.get(0);
+    System.out.println(firstLetter);
+
+    char lastLetter = alphabet.get(25);
+    System.out.println(lastLetter);
+
+    String vowels = "aeiou";
+    if(vowels.contains(Character.toString(firstLetter))){
+      System.out.println("You've got a vowel!");
+      newArr3.add(firstLetter);
+      return newArr3;
     }
-    /* Generate and return an array with 10 random numbers between 55-100 and have it be sorted (showing the smallest number in the beginning). Display all the numbers in the array. Next, display the minimum value in the array as well as the maximum value.
-	*/
-	public static int[] randomArr55To100Sorted(){
-        int[] array = randomArr55To100();
-        Arrays.sort(array);
-        System.out.println(Arrays.toString(array));
-        System.out.println("The minimum is: "+array[0]);
-        System.out.println("The maximum is: "+array[9]);
-        return array;
+    else{
+      newArr3.add(firstLetter);
+      newArr3.add(lastLetter);
+      return newArr3;
     }
-    /* Create a random string that is 5 characters long.
-	*/
-	public static String randomString(){
-        Random rand = new Random();
-        char[] alphabet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
-        String str = "";
-        for(int i = 0; i<5; i++){
-            int random = rand.nextInt(26);
-            str += alphabet[random];
-        }
-        return str;
+  }
+
+  public int[] generateRandom(){
+    int[] arr;
+    arr = new int[10];
+    Random rand = new Random();
+    for(int i = 0; i < 10; i++){
+      int randomNum = rand.nextInt(45) + 55;
+      arr[i] = randomNum;
     }
-    /* Generate an array with 10 random strings that are each 5 characters long
-	*/
-	public static String[] arrOfStrings(){
-        String[] arr = new String[10];
-        for(int i=0; i<10; i++){
-            arr[i]=randomString();
-        }
-        return arr;
+    return arr;
+  }
+
+  public int[] sortedRandom(){
+    int[] arr;
+    arr = new int[10];
+    Random rand = new Random();
+    for(int i = 0; i < 10; i++){
+      int randomNum = rand.nextInt(45) + 55;
+      arr[i] = randomNum;
     }
-    public static void main(String[] args){
-        System.out.println(printAndReturn());
-        System.out.println(shuffleNames());
-        alphaShuffle();
-        System.out.println(Arrays.toString(randomArr55To100()));
-        randomArr55To100Sorted();
-        System.out.println(randomString());
-        System.out.println(Arrays.toString(arrOfStrings()));
+    Arrays.sort(arr);
+    System.out.println(Arrays.toString(arr));
+    System.out.println(arr[0]);
+    System.out.println(arr[9]);
+    return arr;
+  }
+
+  public String randomString(){
+      String letters = "abcdefghijklmnopqrstuvwzyz";
+      ArrayList<Character> string = new ArrayList<Character>();
+      Random rand = new Random();
+      for(int i = 0; i < 5; i++){
+        int randomNum = rand.nextInt(26);
+        string.add(letters.charAt(randomNum));
+      }
+      String myString = "";
+      for (Character c : string) {
+        myString += c;
+      }
+      return myString;
     }
+
+  public String[] fiveStrings(){
+    String[] arr;
+    arr = new String[10];
+    for(int i = 0; i < 10; i++){
+      String newString = randomString();
+      arr[i] = newString;
+    }
+    return arr;
+  }
 }
